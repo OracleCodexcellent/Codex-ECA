@@ -748,6 +748,69 @@ Create a PowerPoint-ready dashboard storyboard. For each dashboard page, include
 
 Use the Presentations skill when you want Codex to create a real PowerPoint file, not just an outline.
 
+OpenAI's Codex slide deck use case describes using Codex to create and update `.pptx` files, generate visuals, and validate slide layouts: https://developers.openai.com/codex/use-cases/generate-slide-decks
+
+### Creating Presentations as an Architect
+
+Architect presentations are different from product tours. The deck should help the customer make a decision, understand tradeoffs, and see the path from current state to target state.
+
+Use Codex to create the first version of the deck structure, but keep ownership of the architecture logic. The strongest architecture decks usually include:
+
+- One clear customer problem
+- Current-state pain and constraints
+- Target-state architecture
+- Key architecture decisions
+- Service mapping and rationale
+- Data, integration, security, and operations views
+- Migration or PoC path
+- Risks, assumptions, and open decisions
+- Executive next steps
+
+Architect-focused prompt:
+
+```text
+Use the Presentations skill to create an architecture decision deck.
+
+Audience: CIO, CTO, enterprise architects, security leader, platform team, application owners
+Customer context: <paste customer context>
+Architecture decision needed: <state the decision this deck should support>
+Tone: Clear, practical, executive-readable, not a product tour
+
+Create a 12-slide PowerPoint deck:
+1. Decision needed and recommendation
+2. Business context
+3. Current-state architecture and pain points
+4. Target-state architecture
+5. Service mapping and rationale
+6. Data flow
+7. Integration flow
+8. Security and governance model
+9. Operations and observability model
+10. Migration or PoC roadmap
+11. Risks, assumptions, and open questions
+12. Next steps and decision owners
+
+Requirements:
+- Make every slide title state the point of the slide.
+- Include speaker notes for an architect-led customer discussion.
+- Use diagrams where they clarify architecture decisions.
+- Keep claims factual and mark assumptions as [VERIFY].
+- Render and verify the deck visually before delivery.
+- Save the PPTX locally.
+- Do not commit or push.
+```
+
+Good presentation use cases for architects:
+
+- Executive architecture readout
+- Current-state to target-state deck
+- Architecture review board package
+- PoC readout and next-step recommendation
+- Migration strategy deck
+- RFP oral presentation support
+- Security and governance architecture overview
+- TCO and business-case narrative
+
 ### Good Uses
 
 - Customer architecture readout
@@ -985,110 +1048,9 @@ Codex can suggest options, but it cannot read the room. Questions like "Should w
 
 Codex can be confidently wrong. If you ask it about something where you cannot detect an error, treat the output as a hypothesis to verify.
 
-## Setting Up Codex for SE Work: First 30 Minutes
+## Setting Up Codex for SE Work
 
-This section uses Codex CLI examples. CLI behavior and flags can vary by version, so verify your installed version and your organization's approved usage policy.
-
-OpenAI's help documentation describes Codex CLI installation with:
-
-```bash
-npm install -g @openai/codex
-```
-
-It also supports signing in with ChatGPT through the CLI in supported plans and environments.
-
-### 1. Install or Open Codex
-
-```bash
-npm install -g @openai/codex
-codex
-```
-
-If your organization provides a managed Codex environment, use that instead of a personal setup.
-
-### 2. Create a Working Directory
-
-```bash
-mkdir -p ~/se-workspace
-cd ~/se-workspace
-```
-
-### 3. Create a Starter `AGENTS.md`
-
-In `~/se-workspace/AGENTS.md`, add something like this:
-
-```markdown
-# Oracle Solutions Engineering workspace
-
-## Who I am
-Principal Solutions Engineer at Oracle, covering OCI, Autonomous Database,
-Fusion Cloud, Exadata, MySQL HeatWave, APEX, Analytics, AI, and adjacent products.
-Pre-sales / sales consulting role.
-
-## Voice / style
-- Confident but factual; no marketing superlatives.
-- Use Oracle product names carefully.
-- When comparing to competitors, be balanced and flag where they have real strengths.
-- Default to US English.
-- Default to USD for pricing, but do not invent pricing.
-
-## What I do most
-- PoCs and demos
-- SQL, Python, Node.js, and Terraform drafts for OCI demos
-- RFI/RFP drafts
-- Architecture conversions from AWS, Azure, or GCP to OCI
-- Customer follow-up emails and executive summaries
-- TCO model scaffolding
-- Migration assessments
-- Junior SE review
-
-## Things to never do
-- Do not fabricate Oracle pricing.
-- Do not reference internal Oracle roadmap unless I explicitly provide approved language.
-- Do not include customer PII in sample data.
-- Generate synthetic data for demos.
-- Mark uncertain claims as [VERIFY].
-- Do not commit or push unless I explicitly ask.
-
-## Useful preferences
-- Prefer Mermaid diagrams for architecture drafts I can paste into slides.
-- Prefer tables for service comparisons.
-- Prefer executive summaries that separate facts, assumptions, and recommendations.
-- Prefer demo artifacts that include setup, validation, reset, and troubleshooting steps.
-```
-
-### Why `AGENTS.md` Helps
-
-`AGENTS.md` gives Codex standing instructions for a workspace. It is like telling a new teammate how you work before assigning tasks.
-
-### 4. Use a Safe Launch Pattern
-
-For local SE work, a safe default is to allow Codex to read and write inside the workspace while asking before actions that need approval.
-
-Example pattern if your CLI supports these flags:
-
-```bash
-codex --sandbox workspace-write --ask-for-approval on-request
-```
-
-Optional shell alias:
-
-```bash
-alias se-codex='codex --sandbox workspace-write --ask-for-approval on-request'
-```
-
-### 5. Try One Real Task Today
-
-Do not try to learn every feature first. Pick one real task:
-
-- Draft a follow-up email
-- Create a demo dataset
-- Build an RFI answer table
-- Convert an AWS architecture to OCI
-- Create a migration assessment outline
-- Review a junior SE's deck
-
-Use Codex on that task, then save the prompt if it worked.
+For setup steps, workspace structure, and a starter `AGENTS.md`, see [CODEX_SE_SETUP.md](CODEX_SE_SETUP.md).
 
 ## A Realistic Week with Codex
 
@@ -1244,20 +1206,21 @@ Do not optimize away the part of SE work that matters most: showing customers wh
 
 ## Where to Go Next
 
-Suggested companion guides to create or maintain in this workspace:
+Available guides in this repository:
 
-- `codex-tutorial.md`: Basic and medium Codex usage for SEs
-- `codex-most-used-commands.md`: Daily-use Codex commands and prompts
-- `codex-commands-guide.md`: Full command reference
-- `codex-concepts-guide.md`: Concepts such as tokens, MCP, tools, skills, approvals, and connectors
+- [README.md](README.md): Repository overview
+- [CODEX_SE_SETUP.md](CODEX_SE_SETUP.md): First-30-minutes setup guide for Oracle SE work
+- [CODEX_COMMANDS_TUTORIAL.md](CODEX_COMMANDS_TUTORIAL.md): Daily Codex playbook for Oracle Solutions Engineers and Cloud Enterprise Architects
 
-Useful official references:
+Useful official Codex references for architects:
 
-- OpenAI Codex CLI getting started: https://help.openai.com/en/articles/11096431
-- OpenAI Codex CLI sign-in with ChatGPT: https://help.openai.com/en/articles/11381614-codex-cli-and-sign-in-withgpt
-- Using Codex with your ChatGPT plan: https://help.openai.com/en/articles/11369540
-- Oracle Cloud Infrastructure: https://www.oracle.com/cloud/
-- Oracle Autonomous Database documentation: https://docs.oracle.com/en/cloud/paas/autonomous-database/
-- Oracle APEX: https://www.oracle.com/apex/
-- Oracle APEX Application Development: https://www.oracle.com/application-development/apex/
-- OCI Generative AI overview: https://docs.oracle.com/en-us/iaas/Content/generative-ai/overview.htm
+- Codex use cases: https://developers.openai.com/codex/use-cases
+- Generate slide decks: https://developers.openai.com/codex/use-cases/generate-slide-decks
+- Analyze datasets and ship reports: https://developers.openai.com/codex/use-cases/datasets-and-reports
+- Query tabular data: https://developers.openai.com/codex/use-cases/analyze-data-export
+- Get from idea to proof of concept: https://developers.openai.com/codex/use-cases/idea-to-proof-of-concept
+- Turn feedback into actions: https://developers.openai.com/codex/use-cases/feedback-synthesis
+- Learn a new concept: https://developers.openai.com/codex/use-cases/learn-a-new-concept
+- Understand large codebases: https://developers.openai.com/codex/use-cases/codebase-onboarding
+- Save workflows as skills: https://developers.openai.com/codex/use-cases/reusable-codex-skills
+- Codex best practices: https://developers.openai.com/codex/learn/best-practices

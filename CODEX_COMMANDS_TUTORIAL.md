@@ -405,10 +405,6 @@ Add a second demo path for operational analytics: driver utilization, city-level
 Create speaker notes explaining why this demo is relevant to an analytics buyer and what questions to ask during the demo.
 ```
 
-### Layman Explanation
-
-Good analytics demos need believable data. If the data looks fake or too simple, the customer stops trusting the demo. Codex helps generate realistic sample data and the query story around it.
-
 ## Scenario 6: Helping a Customer Migrate Code to Oracle
 
 ### The Situation
@@ -512,10 +508,6 @@ Tabs:
 Use formulas and clear formatting. Do not invent pricing. Use placeholders for prices that must come from official tools or account-specific pricing. Save locally. Do not commit or push.
 ```
 
-### Layman Explanation
-
-Codex is good at spreadsheet scaffolding. You are still responsible for the numbers. Never let Codex produce final pricing that the customer will rely on unless you validate it with approved pricing tools and the account team.
-
 ## Scenario 8: Building a Quick APEX or Web App Demo
 
 ### The Situation
@@ -572,10 +564,6 @@ The app should:
 
 Do not include real credentials. Do not commit or push.
 ```
-
-### Layman Explanation
-
-Sometimes a live app is more memorable than a slide. Codex can create the simple demo layer so you can focus on explaining the customer value.
 
 ## Scenario 9: Reviewing Junior SE Work
 
@@ -654,10 +642,6 @@ Focus on:
 Cite the official Oracle sources used.
 ```
 
-### Layman Explanation
-
-Codex helps turn release notes into field relevance. It does not remove the need to check official sources before making customer claims.
-
 ## Scenario 11: Fusion Cloud Discovery and Demo Planning
 
 ### The Situation
@@ -726,10 +710,6 @@ Output:
 
 Do not make a final recommendation without enough workload facts.
 ```
-
-### Layman Explanation
-
-Database platform choices are not just product choices. They depend on workload, operations, licensing, performance, resilience, data gravity, and the customer's team skills.
 
 ## Scenario 13: Analytics and Executive Insight Demo
 
@@ -1033,10 +1013,6 @@ mkdir -p ~/se-workspace
 cd ~/se-workspace
 ```
 
-Layman explanation:
-
-This creates one root folder for your SE work: customer folders, PoCs, RFI drafts, generated demo data, and reusable prompts.
-
 ### 3. Create a Starter `AGENTS.md`
 
 In `~/se-workspace/AGENTS.md`, add something like this:
@@ -1100,10 +1076,6 @@ Optional shell alias:
 ```bash
 alias se-codex='codex --sandbox workspace-write --ask-for-approval on-request'
 ```
-
-Layman explanation:
-
-This keeps Codex productive but bounded. It can help create local files, but sensitive actions still require approval.
 
 ### 5. Try One Real Task Today
 

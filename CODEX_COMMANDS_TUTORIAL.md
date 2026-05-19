@@ -190,10 +190,6 @@ Generate the same dataset as CSV files that can be uploaded through the OCI cons
 Create a 10-minute demo script that starts with the business problem, shows the data model, runs three queries, and explains what the customer should notice.
 ```
 
-### Layman Explanation
-
-The hard part of a PoC is often not the core idea. It is all the setup around the idea. Codex helps you create the demo skeleton quickly, so you can spend your time making the story relevant to the customer.
-
 ## Scenario 2: Writing RFI and RFP Responses
 
 ### The Situation
@@ -315,10 +311,6 @@ Use Codex to produce the full table, but common mappings may include:
 | Amazon API Gateway | OCI API Gateway |
 | Amazon Cognito | OCI IAM identity domains or integration with the customer's identity provider |
 | Amazon CloudWatch | OCI Logging, Monitoring, Alarms, and Application Performance Monitoring |
-
-### Layman Explanation
-
-This is not just word replacement. You are translating an architecture from one cloud operating model to another. Codex can create the first mapping, but you validate fit based on latency, operations, cost, compliance, and customer skill set.
 
 ## Scenario 4: Following Up After a Customer Call
 

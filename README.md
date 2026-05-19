@@ -1,2 +1,2 @@
 # Codex-ECA
-Useful codex commands for ECa and Solution Engineers.
+Useful codex commands for ECA and Solution Engineers.

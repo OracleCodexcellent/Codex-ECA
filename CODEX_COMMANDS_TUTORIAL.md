@@ -565,45 +565,7 @@ The app should:
 Do not include real credentials. Do not commit or push.
 ```
 
-## Scenario 9: Reviewing Junior SE Work
-
-### The Situation
-
-You are asked to review a demo script, RFP draft, architecture diagram, or TCO model from a less-experienced SE.
-
-### Prompt
-
-```text
-Review this draft as if you were the customer's procurement team and enterprise architecture review board.
-
-Look for:
-1. Claims that are overstated
-2. Missing assumptions
-3. Missing security details
-4. Missing pricing or sizing caveats
-5. Architecture gaps
-6. Weak demo story
-7. Competitive risks
-8. Anything the customer is likely to challenge
-
-Do not rewrite the whole document.
-Give me a prioritized punch list of issues by deal risk:
-- High
-- Medium
-- Low
-
-For each issue, explain why it matters and what the author should fix.
-```
-
-### Why This Helps
-
-Codex does the tedious first-pass review. You still provide the strategic feedback:
-
-- "We should lead with business value."
-- "This architecture does not address the customer's security concern."
-- "This demo does not connect to the executive sponsor's stated pain."
-
-## Scenario 10: Staying Current on Oracle's Product Portfolio
+## Scenario 9: Staying Current on Oracle's Product Portfolio
 
 ### The Situation
 
@@ -642,7 +604,7 @@ Focus on:
 Cite the official Oracle sources used.
 ```
 
-## Scenario 11: Fusion Cloud Discovery and Demo Planning
+## Scenario 10: Fusion Cloud Discovery and Demo Planning
 
 ### The Situation
 
@@ -677,7 +639,7 @@ Do not invent product capabilities. Mark anything requiring validation as [VERIF
 
 Fusion conversations often cross business and technical teams. Codex can help you prepare questions that connect process, data, integration, identity, reporting, and operations.
 
-## Scenario 12: Exadata and Database Platform Modernization
+## Scenario 11: Exadata and Database Platform Modernization
 
 ### The Situation
 
@@ -711,7 +673,7 @@ Output:
 Do not make a final recommendation without enough workload facts.
 ```
 
-## Scenario 13: Analytics and Executive Insight Demo
+## Scenario 12: Analytics and Executive Insight Demo
 
 ### The Situation
 

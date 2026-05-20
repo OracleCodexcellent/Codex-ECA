@@ -42,54 +42,6 @@ se-workspace/
   scratch/
 ```
 
-## 3. Create a Starter `AGENTS.md`
-
-In `~/se-workspace/AGENTS.md`, add standing instructions that describe your role, voice, and guardrails.
-
-Example:
-
-```markdown
-# Oracle Solutions Engineering workspace
-
-## Who I am
-Principal Solutions Engineer at Oracle, covering OCI, Autonomous Database,
-Fusion Cloud, Exadata, MySQL HeatWave, APEX, Analytics, AI, and adjacent products.
-Pre-sales / sales consulting role.
-
-## Voice / style
-- Confident but factual; no marketing superlatives.
-- Use Oracle product names carefully.
-- When comparing to competitors, be balanced and flag where they have real strengths.
-- Default to US English.
-- Default to USD for pricing, but do not invent pricing.
-
-## What I do most
-- PoCs and demos
-- SQL, Python, Node.js, and Terraform drafts for OCI demos
-- RFI/RFP drafts
-- Architecture conversions from AWS, Azure, or GCP to OCI
-- Customer follow-up emails and executive summaries
-- TCO model scaffolding
-- Migration assessments
-- Junior SE review
-
-## Things to never do
-- Do not fabricate Oracle pricing.
-- Do not reference internal Oracle roadmap unless I explicitly provide approved language.
-- Do not include customer PII in sample data.
-- Generate synthetic data for demos.
-- Mark uncertain claims as [VERIFY].
-- Do not commit or push unless I explicitly ask.
-
-## Useful preferences
-- Prefer Mermaid diagrams for architecture drafts I can paste into slides.
-- Prefer tables for service comparisons.
-- Prefer executive summaries that separate facts, assumptions, and recommendations.
-- Prefer demo artifacts that include setup, validation, reset, and troubleshooting steps.
-```
-
-`AGENTS.md` gives Codex standing instructions for a workspace. It is like briefing a new teammate before assigning tasks.
-
 ## 4. Use a Safe Launch Pattern
 
 For local SE work, a safe default is to allow Codex to read and write inside the workspace while asking before actions that need approval.

@@ -1,321 +1,176 @@
-# Setting Up Codex for SE Work: Non-Coder Guide
+# Setting Up Codex with GitHub in the Terminal
 
-This guide is for Oracle Solutions Engineers, Sales Consultants, and Cloud Enterprise Architects who want Codex to handle repository work without typing Git commands.
+This guide is for Oracle Solutions Engineers and Cloud Enterprise Architects who want to use Codex from the terminal and let Codex handle GitHub work such as creating files, creating branches, committing, pushing, and opening pull requests.
 
-You do not need to install Git, GitHub CLI, Node.js, npm, or any developer tool for the workflow in this guide. The only thing you need is access to Codex in an environment that is already connected to the repository and allowed to work with GitHub.
+The simple flow is:
 
-## What You Need
+1. Install Codex in the terminal.
+2. Open Codex in your repository.
+3. Ask Codex to connect or verify GitHub access.
+4. If GitHub asks for a password and your account uses MFA, use a GitHub personal access token as the password.
 
-- Codex access through your approved company setup.
-- A repository connected to Codex.
-- Permission to create branches, commits, pushes, and pull requests for that repository.
-- Approval from your team before using customer, confidential, regulated, or personal data.
+## 1. Install Codex in the CLI
 
-If Codex can see the repository files and can ask for approval before committing or pushing, you are ready.
+Install Codex:
 
-## Plain-English Terms
+```bash
+npm i -g @openai/codex
+```
 
-- Repository: the shared folder where the team keeps documentation or code.
-- Branch: a draft copy of the repository for your changes.
-- Commit: a saved package of changes with a short description.
-- Push: upload your saved changes to GitHub.
-- Pull request, or PR: a review request before your changes are merged.
-- Versioned changes: files the repository is already tracking. This usually excludes local settings, downloads, and editor folders.
+Start Codex:
 
-You do not have to run commands for any of these. Ask Codex to do the work and explain what it is doing.
+```bash
+codex
+```
 
-## First 10 Minutes
+The first time you run Codex, sign in with your ChatGPT account or your OpenAI API key, depending on how your company has approved access.
 
-### 1. Open Codex in the Repository
+## 2. Open Codex in Your Repository
 
-Open Codex in the workspace or repository your team gave you.
+Go to the folder where your repository is located:
 
-Then paste this:
+```bash
+cd ~/path/to/your/repository
+codex
+```
+
+Then ask Codex:
 
 ```text
-Check this repository and explain the current state in plain English.
-
-Tell me:
-- What repository I am in
-- What branch I am on
-- Whether I have local changes
-- Which files changed
-- Whether anything looks like local editor settings or temporary files
+Check this repository and tell me:
+- what branch I am on
+- whether GitHub is connected
+- whether I can create a branch
+- whether I can commit and push
 
 Do not change files.
 Do not commit or push.
 ```
 
-### 2. Tell Codex How You Work
-
-If the repository does not already have an `AGENTS.md` file, ask Codex to create one:
+If the repository is not connected yet, ask:
 
 ```text
-Create an AGENTS.md file for my Oracle Solutions Engineering workspace.
+Connect this local folder to my GitHub repository:
+https://github.com/<org>/<repo>.git
 
-Write it for Codex so it understands how to help me.
-
-Include:
-- I am an Oracle Solutions Engineer / Cloud Enterprise Architect.
-- Keep writing clear, factual, and customer-ready.
-- Do not invent pricing, benchmarks, roadmap, licensing, certifications, or legal commitments.
-- Mark uncertain claims as [VERIFY].
-- Do not include customer PII, credentials, secrets, or confidential data in examples.
-- Use synthetic data for demos.
-- Prefer tables for comparisons.
-- Prefer Mermaid diagrams for architecture drafts.
-- For customer-facing work, separate facts, assumptions, recommendations, and open questions.
-- Do not commit, push, or create a pull request unless I explicitly ask.
-
-Make the file practical and concise.
+Use HTTPS.
+If GitHub asks for a username and password, pause and tell me exactly what to enter.
+Do not store or print my token.
 ```
 
-### 3. Make One Small Local Change
+## 3. Create a GitHub Token
 
-Use a real task, but keep it small:
+If GitHub MFA or SSO is enabled, your normal GitHub password will usually not work for Git commands.
+
+Create a GitHub personal access token, also called a PAT:
+
+1. Go to GitHub in your browser.
+2. Click your profile picture.
+3. Open `Settings`.
+4. Open `Developer settings`.
+5. Open `Personal access tokens`.
+6. Create a fine-grained token if possible.
+7. Select only the repository you need.
+8. Give it the minimum permissions needed, such as read/write access to repository contents.
+9. Set an expiration date.
+10. Copy the token once when GitHub shows it.
+
+Important: this is a GitHub token, not your OpenAI API key.
+
+## 4. Use the Token as the GitHub Password
+
+When Codex tries to push, pull, or clone using HTTPS, GitHub may ask for:
 
 ```text
-Update this documentation so it is easier for a non-coder Oracle SE to understand.
-
-Use plain language.
-Keep the content practical.
-Do not use terminal commands.
-Do not commit or push.
+Username:
+Password:
 ```
 
-### 4. Review Before Publishing
-
-Ask Codex to summarize the changes before anything goes to GitHub:
+Enter:
 
 ```text
-Review my local changes in plain English.
-
-Tell me:
-- Which files changed
-- What changed in each file
-- Whether any new files are untracked
-- Whether any local editor or temporary files should be excluded
-- Whether the change is safe to commit
-
-Do not change files.
-Do not commit or push.
+Username: your GitHub username
+Password: your GitHub personal access token
 ```
 
-## Publishing Changes with Codex
+For MFA accounts, the token is used in place of your GitHub password for HTTPS Git operations.
 
-Use these prompts instead of typing Git commands.
+Do not paste the token into a Markdown file, pull request, commit message, or customer document. Only paste it into the secure password prompt when GitHub asks for it.
 
-### Commit and Push Only Existing Versioned Files
+## Example: What I Did in This Repository
 
-Use this when you changed files that were already part of the repository and you want to avoid adding local files by accident.
+These are examples of the plain-English requests used to build this repository.
+
+Create the first tutorial locally:
 
 ```text
-Commit and push only versioned changes.
-
-Before committing:
-- Show me the files that will be included.
-- Exclude untracked files.
-- Exclude local editor settings, IDE folders, downloads, and temporary files.
-- Use a clear documentation commit message.
-
-After committing:
-- Push this branch to GitHub.
-- Create a pull request against main.
-- Write a detailed PR description with:
-  - Summary
-  - What changed
-  - Why it changed
-  - Review notes
-  - Testing or validation performed
-
-Do not include any untracked files unless I explicitly name them.
+Can you create a tutorial file for me for commonly used commands in Codex by Oracle Solution Engineers or Enterprise architects. Don't commit or push, make the changes locally.
 ```
 
-### Commit and Push a New Named File
-
-Use this when Codex created a new file that you do want included.
+Refine it for architects:
 
 ```text
-Commit and push these specific files only:
-- <file name 1>
-- <file name 2>
-
-Before committing:
-- Confirm the exact files that will be included.
-- Exclude everything else.
-- Do not include editor settings, IDE folders, temporary files, credentials, or customer data.
-
-After committing:
-- Push this branch to GitHub.
-- Create a pull request against main.
-- Write a detailed PR description with summary, changed files, reviewer notes, and validation.
+The file you created is very generic. I want it specific to Cloud Enterprise architects and Oracle Solution Engineers.
 ```
 
-### Create a Branch for New Work
-
-If you are starting a new documentation update, ask Codex:
+Create a branch, push, and open a pull request:
 
 ```text
-Create a new branch for this documentation update.
-
-Use a short branch name that describes the work.
-Then tell me the branch name in plain English.
-
-Do not commit or push yet.
+Can you create a new branch and push the change to the branch and create a PR with detailed description.
 ```
 
-### Update an Existing PR
-
-Use this after reviewers leave comments:
+Address pull request comments locally:
 
 ```text
-Read the pull request comments for this PR: <paste PR link>
-
-Summarize what reviewers asked for.
-Make the requested documentation changes locally.
-Show me a plain-English summary of the changes.
-
-Do not commit or push until I approve.
+There are a few PR comments. Can you address that locally in the PR and don't commit or push.
 ```
 
-When you are ready:
+Commit and push the fixes:
 
 ```text
-Commit and push the PR feedback changes to the same branch.
-
-Use a clear commit message.
-Update the PR description if needed.
-Tell me what changed and provide the PR link.
+Commit and push to the branch and update PR description accordingly.
 ```
 
-### Sync After a PR Is Merged
-
-After the PR is merged, ask Codex:
+Pull latest main and create a new branch:
 
 ```text
-My pull request was merged.
-
-Update my local workspace so it matches the latest main branch.
-Then tell me in plain English whether I am ready to start the next task.
+Can you go to main branch and pull the latest changes and then create a new branch locally.
 ```
 
-## Everyday Prompt Patterns
-
-### Create Customer-Ready Documentation
+Commit only a specific file:
 
 ```text
-Create a customer-ready architecture summary from these notes.
-
-Audience: CIO, CTO, enterprise architects, security leader, platform team
-Tone: clear, factual, executive-readable
-
-Structure:
-- Executive summary
-- Current state
-- Target state
-- Recommended architecture
-- Key Oracle services
-- Risks and assumptions
-- Open questions
-- Next steps
-
-Mark anything uncertain as [VERIFY].
-Do not invent pricing, benchmarks, or roadmap.
-Do not commit or push.
+Commit and push these specific files only: CODEX_SE_SETUP.md
 ```
 
-### Turn Notes into a Follow-Up Email
+## Safe Prompts to Use
+
+Before publishing:
 
 ```text
-Draft a customer follow-up email from these notes.
-
-Make it concise, professional, and specific.
-Separate:
-- Thank you / context
-- Decisions made
-- Action items
-- Open questions
-- Next meeting or next step
-
-Do not invent commitments.
-Mark uncertain items as [VERIFY].
-Do not commit or push.
+Show me what files changed and what will be committed. Do not commit or push yet.
 ```
 
-### Build a Demo or PoC Checklist
+To avoid adding local junk files:
 
 ```text
-Create a PoC checklist for this customer scenario.
-
-Include:
-- Goal
-- Scope
-- Success criteria
-- Demo data needed
-- Setup tasks
-- Validation steps
-- Risks
-- Rollback or cleanup steps
-- Owner and due date columns
-
-Use synthetic data only.
-Do not create cloud resources.
-Do not commit or push.
+Commit and push only the files I name. Exclude untracked files, IDE folders, local settings, temporary files, credentials, and tokens.
 ```
 
-### Review a Document Before Sharing
+To create a pull request:
 
 ```text
-Review this document for a customer-facing Oracle SE audience.
-
-Check for:
-- Unsupported claims
-- Pricing, licensing, benchmark, roadmap, or legal-risk statements
-- Confusing language
-- Missing assumptions
-- Missing next steps
-- Anything that should be marked [VERIFY]
-
-Suggest edits in plain English.
-Do not commit or push.
+Push this branch to GitHub and create a pull request against main with a detailed description.
 ```
 
-## Safety Rules
-
-- Ask Codex to make local changes first.
-- Ask Codex to review the changed files before publishing.
-- Ask Codex to exclude editor settings and temporary files.
-- Use PRs for shared repositories.
-- Do not publish credentials, tokens, secret keys, customer confidential data, or customer PII.
-- Validate pricing, sizing, performance, licensing, roadmap, security, and legal claims with approved sources.
-- If you do not understand what Codex is about to publish, ask it to explain in plain English before approving.
-
-## Best One-Line Prompts
+To sync after merge:
 
 ```text
-Explain the repository state in plain English. Do not change anything.
+My pull request was merged. Switch to main, pull the latest changes, and tell me whether my local repo is clean.
 ```
 
-```text
-Make the documentation easier for non-coders. Do not use terminal commands. Do not commit or push.
-```
+## Official References
 
-```text
-Review my local changes and tell me what would be committed. Do not commit or push.
-```
-
-```text
-Commit and push only versioned changes, create a pull request, and write a detailed PR description.
-```
-
-```text
-Read the PR comments, make the requested changes locally, and wait for my approval before publishing.
-```
-
-## Useful Official Codex References
-
-- Codex quickstart: https://developers.openai.com/codex/quickstart
-- Codex use cases: https://developers.openai.com/codex/use-cases
-- Codex best practices: https://developers.openai.com/codex/learn/best-practices
-- Custom instructions with `AGENTS.md`: https://developers.openai.com/codex/guides/agents-md
-- Codex skills: https://developers.openai.com/codex/skills
+- Codex CLI: https://developers.openai.com/codex/cli
+- GitHub personal access tokens: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+- GitHub with two-factor authentication: https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/accessing-github-using-two-factor-authentication

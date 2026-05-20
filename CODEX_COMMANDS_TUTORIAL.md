@@ -1014,60 +1014,6 @@ Codex can be confidently wrong. If you ask it about something where you cannot d
 
 For setup steps, workspace structure, and a starter `AGENTS.md`, see [CODEX_SE_SETUP.md](CODEX_SE_SETUP.md).
 
-## A Realistic Week with Codex
-
-### Monday
-
-9:00: Customer kickoff call.
-
-10:00: Codex drafts the follow-up email, internal summary, and action list from rough notes.
-
-11:00: Codex generates a starter PoC schema based on the customer's use case.
-
-Afternoon: You refine the demo story, validate assumptions, and align with the account team.
-
-### Tuesday
-
-Morning: An RFI arrives. Codex drafts first-pass answers for the questions that have source material.
-
-Afternoon: The sales rep asks for a TCO comparison. Codex creates the workbook structure; you fill in validated numbers.
-
-### Wednesday
-
-Demo prep for Thursday.
-
-Codex creates:
-
-- Synthetic data
-- Sample SQL queries
-- A lightweight web or APEX demo plan
-- A demo script
-- Troubleshooting notes
-
-You spend the evening rehearsing the customer story, not building plumbing.
-
-### Thursday
-
-Live demo. Codex stays closed.
-
-After the demo, Codex drafts:
-
-- Customer recap email
-- Internal "how it went" summary
-- Risk and action register
-- Follow-up demo improvements
-
-### Friday
-
-Peer review and cleanup.
-
-Codex helps:
-
-- Review a junior SE's RFP answer
-- Create a punch list for an architecture deck
-- Convert one stored procedure or query for a customer technical contact
-- Save reusable prompts into your prompt library
-
 ## Personal Prompt Library
 
 Every time a prompt works, save it.
@@ -1139,12 +1085,6 @@ Use the Presentations skill to create a customer-ready PowerPoint deck. Include 
 
 ```text
 Use the Spreadsheets skill to create a TCO workbook. Include input assumptions, current-state costs, proposed OCI costs, 3-year view, sensitivity analysis, risks, and validation items. Do not invent pricing.
-```
-
-### Junior SE Review
-
-```text
-Review this as a senior Oracle SE. Give me a prioritized punch list of issues by deal risk. Focus on overstated claims, missing assumptions, weak architecture logic, security gaps, pricing caveats, and likely customer objections.
 ```
 
 ## Final Advice

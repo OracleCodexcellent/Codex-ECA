@@ -97,52 +97,6 @@ For MFA accounts, the token is used in place of your GitHub password for HTTPS G
 
 Do not paste the token into a Markdown file, pull request, commit message, or customer document. Only paste it into the secure password prompt when GitHub asks for it.
 
-## Example: What I Did in This Repository
-
-These are examples of the plain-English requests used to build this repository.
-
-Create the first tutorial locally:
-
-```text
-Can you create a tutorial file for me for commonly used commands in Codex by Oracle Solution Engineers or Enterprise architects. Don't commit or push, make the changes locally.
-```
-
-Refine it for architects:
-
-```text
-The file you created is very generic. I want it specific to Cloud Enterprise architects and Oracle Solution Engineers.
-```
-
-Create a branch, push, and open a pull request:
-
-```text
-Can you create a new branch and push the change to the branch and create a PR with detailed description.
-```
-
-Address pull request comments locally:
-
-```text
-There are a few PR comments. Can you address that locally in the PR and don't commit or push.
-```
-
-Commit and push the fixes:
-
-```text
-Commit and push to the branch and update PR description accordingly.
-```
-
-Pull latest main and create a new branch:
-
-```text
-Can you go to main branch and pull the latest changes and then create a new branch locally.
-```
-
-Commit only a specific file:
-
-```text
-Commit and push these specific files only: CODEX_SE_SETUP.md
-```
-
 ## Safe Prompts to Use
 
 Before publishing:

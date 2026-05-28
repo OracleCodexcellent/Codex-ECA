@@ -1,83 +1,121 @@
-# Setting Up Codex for SE Work: First 30 Minutes
+# Setting Up Codex with GitHub in the Terminal
 
-This guide helps Oracle Solutions Engineers, Sales Consultants, and Cloud Enterprise Architects set up a practical Codex workspace for day-to-day pre-sales work.
+This guide is for Oracle Solutions Engineers and Cloud Enterprise Architects who want to use Codex from the terminal and let Codex handle GitHub work such as creating files, creating branches, committing, pushing, and opening pull requests.
 
-Codex CLI behavior and flags can vary by version, so verify your installed version and your organization's approved usage policy before relying on a specific command.
+The simple flow is:
 
-## 1. Install or Open Codex
+1. Install Codex in the terminal.
+2. Open Codex in your repository.
+3. Ask Codex to connect or verify GitHub access.
+4. If GitHub asks for a password and your account uses MFA, use a GitHub personal access token as the password.
 
-OpenAI's Codex documentation describes CLI installation with:
+## 1. Install Codex in the CLI
+
+Install Codex:
 
 ```bash
-npm install -g @openai/codex
+npm i -g @openai/codex
 ```
 
-Then start Codex:
+Start Codex:
 
 ```bash
 codex
 ```
 
-If your organization provides a managed Codex environment, use that instead of a personal setup.
+The first time you run Codex, sign in with your ChatGPT account or your OpenAI API key, depending on how your company has approved access.
 
-## 2. Create a Working Directory
+## 2. Open Codex in Your Repository
 
-Create one root folder for SE work:
+Go to the folder where your repository is located:
 
 ```bash
-mkdir -p ~/se-workspace
-cd ~/se-workspace
+cd ~/path/to/your/repository
+codex
 ```
 
-Use this workspace for customer folders, PoC code, RFI drafts, generated demo data, reusable prompts, and templates.
-
-Suggested structure:
+Then ask Codex:
 
 ```text
-se-workspace/
-  customers/
-  demos/
-  prompts/
-  templates/
-  scratch/
+Check this repository and tell me:
+- what branch I am on
+- whether GitHub is connected
+- whether I can create a branch
+- whether I can commit and push
+
+Do not change files.
+Do not commit or push.
+```
+
+If the repository is not connected yet, ask:
+
+```text
+Connect this local folder to my GitHub repository:
+https://github.com/<org>/<repo>.git
+
+Use HTTPS.
+If GitHub asks for a username and password, pause and tell me exactly what to enter.
+Do not store or print my token.
+```
+
+## 3. Create a GitHub Token
+
+If GitHub MFA or SSO is enabled, your normal GitHub password will usually not work for Git commands.
+
+Create a GitHub personal access token, also called a PAT:
+
+1. Go to GitHub in your browser.
+2. Click your profile picture.
+3. Open `Settings`.
+4. Open `Developer settings`.
+5. Open `Personal access tokens`.
+6. Create a fine-grained token if possible.
+7. Select only the repository you need.
+8. Give it the minimum permissions needed, such as read/write access to repository contents.
+9. Set an expiration date.
+10. Copy the token once when GitHub shows it.
+
+Important: this is a GitHub token, not your OpenAI API key.
+
+## 4. Use the Token as the GitHub Password
+
+When Codex tries to push, pull, or clone using HTTPS, GitHub may ask for:
+
+```text
+Username:
+Password:
 ```
 
 ## 4. Use a Safe Launch Pattern
 
-For local SE work, a safe default is to allow Codex to read and write inside the workspace while asking before actions that need approval.
+## Safe Prompts to Use
 
-Example pattern if your CLI supports these flags:
+Before publishing:
 
-```bash
-codex --sandbox workspace-write --ask-for-approval on-request
+```text
+Show me what files changed and what will be committed. Do not commit or push yet.
 ```
 
-Optional shell alias:
+To avoid adding local junk files:
 
-```bash
-alias se-codex='codex --sandbox workspace-write --ask-for-approval on-request'
+```text
+Commit and push only the files I name. Exclude untracked files, IDE folders, local settings, temporary files, credentials, and tokens.
 ```
 
-## 5. Try One Real Task Today
+To create a pull request:
 
-Do not try to learn every feature first. Pick one real task:
+```text
+Push this branch to GitHub and create a pull request against main with a detailed description.
+```
 
-- Draft a follow-up email
-- Create a demo dataset
-- Build an RFI answer table
-- Convert an AWS architecture to OCI
-- Create a migration assessment outline
-- Review a junior SE's deck
+To sync after merge:
 
-Use Codex on that task, then save the prompt if it worked.
+```text
+My pull request was merged. Switch to main, pull the latest changes, and tell me whether my local repo is clean.
+```
 
-## Useful Official Codex References
+## Official References
 
-- Codex quickstart: https://developers.openai.com/codex/quickstart
 - Codex CLI: https://developers.openai.com/codex/cli
-- Codex CLI command line options: https://developers.openai.com/codex/cli/reference
-- Custom instructions with `AGENTS.md`: https://developers.openai.com/codex/guides/agents-md
-- Codex skills: https://developers.openai.com/codex/skills
-- Model Context Protocol in Codex: https://developers.openai.com/codex/mcp
-- Codex best practices: https://developers.openai.com/codex/learn/best-practices
-- Generate slide decks with Codex: https://developers.openai.com/codex/use-cases/generate-slide-decks
+- GitHub personal access tokens: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+- GitHub with two-factor authentication: https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/accessing-github-using-two-factor-authentication

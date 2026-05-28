@@ -86,16 +86,7 @@ Username:
 Password:
 ```
 
-Enter:
-
-```text
-Username: your GitHub username
-Password: your GitHub personal access token
-```
-
-For MFA accounts, the token is used in place of your GitHub password for HTTPS Git operations.
-
-Do not paste the token into a Markdown file, pull request, commit message, or customer document. Only paste it into the secure password prompt when GitHub asks for it.
+## 4. Use a Safe Launch Pattern
 
 ## Safe Prompts to Use
 

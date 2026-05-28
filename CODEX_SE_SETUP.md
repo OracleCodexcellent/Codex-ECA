@@ -8,6 +8,7 @@ The simple flow is:
 2. Open Codex in your repository.
 3. Ask Codex to connect or verify GitHub access.
 4. If GitHub asks for a password and your account uses MFA, use a GitHub personal access token as the password.
+5. Use GitHub in your browser to review, comment on, and merge the pull request.
 
 ## 1. Install Codex in the CLI
 
@@ -107,6 +108,35 @@ To create a pull request:
 ```text
 Push this branch to GitHub and create a pull request against main with a detailed description.
 ```
+
+To merge changes, follow the steps below on GitHub web.
+
+### Merge the Pull Request in GitHub Web
+
+After Codex pushes a branch and creates a pull request, GitHub gives you a pull request link.
+
+Open that link in your browser and review the pull request:
+
+1. Read the pull request title and description.
+2. Open the `Files changed` tab.
+3. Confirm the changes match what you asked Codex to do.
+4. Confirm no credentials, tokens, local settings, temporary files, or IDE folders are included.
+5. Return to the `Conversation` tab.
+6. Add a short comment, such as:
+
+```text
+Reviewed the changes. This is ready to merge.
+```
+
+Then merge the pull request:
+
+1. Confirm the checks are passing or that your team allows merging without checks.
+2. Confirm there are no merge conflicts.
+3. Click `Merge pull request`.
+4. Click `Confirm merge`.
+5. If GitHub offers to delete the branch, delete it only if your team normally cleans up merged branches.
+
+After the merge, return to Codex and sync your local repository.
 
 To sync after merge:
 

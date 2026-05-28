@@ -99,7 +99,7 @@ Show me what files changed and what will be committed. Do not commit or push yet
 To avoid adding local junk files:
 
 ```text
-Commit and push only the files I name. Exclude untracked files, IDE folders, local settings, temporary files, credentials, and tokens.
+Commit and push only the files I changed. Exclude untracked files, IDE folders, local settings, temporary files, credentials, and tokens.
 ```
 
 To create a pull request:
